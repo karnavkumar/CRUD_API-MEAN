@@ -1,0 +1,110 @@
+<div class="col-lg-6">
+    <form name="myForm" class="col-lg-10" ng-submit="main.insertUserData()" method="post">
+        <legend>{{main.message}}</legend>
+        <div class="form-group">
+            <label for="username">Person Name</label>
+            <input type="text" class="form-control" id="username" ng-model="main.username" ng-required="true">
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile No.</label>
+            <input type="number" class="form-control" ng-minlength="10" ng-maxlength="10" id="mobile" ng-model="main.mobile" ng-required="true">
+
+        </div>
+        <div class="form-group">
+            <label for="item">Purchase Item</label>
+            <select ng-model="main.purchasedItem" id="item" class="form-control">
+                <option value=""></option>
+                <option ng-repeat="items in main.getItems" value="{{items.itemName}}">{{items.itemName}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success" ng-show="myForm.$valid">Submit</button>
+        <button type="reset" class="btn btn-primary">Reset</button>
+    </form>
+    <div class="col-lg-10">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Mobile</th>
+                    <th>Purchased Item</th>
+                    <th> </th>
+                    <th> </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in main.getUsers">
+                    <!-- <form ng-if="main.updateThis == true" ng-submit="main.updateData()" method="put"> -->
+                    <td>
+                        <span ng-if="!main.updateThis">{{user.username}}</span>
+                        <input type="text" ng-model="main.updateUser" ng-if="main.updateThis" placeholder="{{user.username}}">
+                    </td>
+                    <td>
+                        <span ng-if="!main.updateThis">{{user.mobile}}</span>
+                        <input type="text" ng-model="main.updateMobile" ng-minlength="10" ng-maxlength="10" ng-if="main.updateThis" placeholder="{{user.mobile}}">
+                    </td>
+                    <td>
+                        <span ng-if="!main.updateThis">{{user.purchasedItem.itemName}}</span>
+                        <input type="text" ng-model="main.updateItemName" ng-if="main.updateThis" placeholder="{{user.purchasedItem.itemName}}">
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" type="submit" ng-if="main.updateThis">Update</button>
+                        <button class="btn btn-warning" ng-click="main.update(user._id)" ng-if="!main.updateThis">Update</button>
+                    </td>
+                    <td>
+                        <td data-title="'Actions'">
+                            <a ng-click='main.deleteUser(user._id)' class="btn btn-small btn-danger" ng-if="!main.updateThis" Î>delete</a>
+                            <button class="btn btn-warning" type="submit" ng-if="main.updateThis" ng-click="main.undo()">Undo</button>
+                        </td>
+
+                    </td>
+                    <!-- </form> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-lg-6">
+    <form name="main.myForm" class="col-lg-10" ng-submit="main.insertItemData()" method="post">
+        <legend>{{main.errMsg}}</legend>
+        <div class="form-group">
+            <label for="itemname">Item Name</label>
+            <input type="text" class="form-control" id="itemname" ng-model="main.itemname" ng-required="true">
+        </div>
+        <div class="form-group">
+            <label for="itemprice">Item Price</label>
+            <input type="number" class="form-control" id="itemprice" ng-model="main.itemprice" ng-required="true">
+        </div>
+        <button type="submit" class="btn btn-success" ng-show="main.myForm.$valid">Add Item</button>
+        <button type="reset" class="btn btn-primary">Reset</button>
+    </form>
+
+
+    <form action="">
+    </form>
+    <div class="col-lg-10">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Update / Delete</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="items in main.getItems">
+                    <td>{{items.itemName}}</td>
+                    <td>{{items.price}}</td>
+                    <td>
+                        <button class="btn btn-warning">Update</button>
+                        <td data-title="'Actions'">
+                            <a ng-click='main.deleteItem(items._id)' data='{{items._id}}' class="btn btn-small btn-danger">delete</a>
+                        </td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>Î

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "/Volumes/DATA/MEAN/MEANSeed-V-1.1.0"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
